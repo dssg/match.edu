@@ -19,18 +19,21 @@ This is a closely related problem. Students who go to community colleges are, co
 ## The solution: prediction and targeting
 Our goal is to identify students at risk for under-match, based on their academic, demographic, socio-economic information. We use data on past high school graduates to model the students' college outcome. We can then apply the model on current high school students to predict their risk of under-matching and find the high-risk students whom the high school can provide extra counseling. 
 
-We are working with the Mesa Public School District, the largest public school district in Arizona, to design and evaluate our predictive models. We are also using data from a national nonprofit organization and other school districts in the United States.
+We are working with the Mesa Public School District, the largest public school district in Arizona, to design and evaluate our predictive models. We are also using data from a national nonprofit organization and other school districts in the United States. For some demographic features, we download data from the 5-year American Communities Survey (ACS), freely available for public use. 
+
 ![Mesa Public School District](http://dssg.io/img/partners/mesa.png)
 
-
 ## The project
-We numerically quantify under-match, process data, and build various models for under-match estimation. 
-
-### Defining the problem
-A student who enrolls in a two year college but is academically qualified to attend a four year college represents under-match.
-
 
 ### Data Processing
+NDA prevents us from sharing the data as well as the scripts with which we wrote to clean the data. Without going into details, the key data processing challenges we faced are:
+
+* Transfer students. Students who transfer high schools create lots of anomalies in the data.
+* Missing records. Some students have no college records; we often cannot distinguish them from students who did not attend college.
+* ACS data. We geocode high schools and approximately geocode students to associate them with the census tract id. We then match against the ACS data.
+* Spelling mistakes. High schools and colleges often do not have a standard identification code. We have to use the names, which are often misspelled in the data.
+
+
 ### Modeling
 
 
