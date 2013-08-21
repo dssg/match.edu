@@ -14,7 +14,7 @@ Consider two students: Anthony and Benjamin. Anthony is poor and black; Benjamin
 - Anthony attends a non-selective four-year college when he qualifies for a selective one
 
 ### Higher graduation from higher education
-
+This is a closely related problem. Students who go to community colleges are, compared to their academic equivalent peers who go to 4 year colleges, much less likely to graduate or transfer. 
 
 ## The solution: prediction and targeting
 Our goal is to identify students at risk for under-match, based on their academic, demographic, socio-economic information. We use data on past high school graduates to model the students' college outcome. We can then apply the model on current high school students to predict their risk of under-matching and find the high-risk students whom the high school can provide extra counseling. 
