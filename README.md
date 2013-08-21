@@ -13,6 +13,9 @@ Consider two students: Anthony and Benjamin. Anthony is poor and black; Benjamin
 ## The solution: prediction and targeting
 Our goal is to identify students at risk for under-match, based on their academic, demographic, socio-economic information. We use data on past high school graduates to model the students' college outcome. We can then apply the model on current high school students to predict their risk of under-matching and find the high-risk students whom the high school can provide extra counseling. 
 
+![Mesa Public School District](http://dssg.io/img/partners/mesa.png)
+
+
 ## The project
 ### Defining the problem
 ### Data Processing
