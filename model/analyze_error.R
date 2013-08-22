@@ -31,9 +31,9 @@ nfun<-length(FUNS);
 
 #build response
 if (pred.undermatch){
-  ys <- target-col_sat_final
+  ys <- target-col_sat
 } else {
-  ys <- col_sat_final
+  ys <- col_sat
 }
 
 #sanity check

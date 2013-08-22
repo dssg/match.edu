@@ -4,8 +4,9 @@
 #
 # This script uses "analyzeError" to compare 5 methods of 
 # predicting either undermatch or col_sat for dcps:
-# -linear model with lots of features and linear model with gpa&honors
-# -random forest with lots of features and random forest with gpa&honors
+#
+# -linear model with lots of features and linear model with gpa & honors
+# -random forest with lots of features and random forest with gpa & honors
 # -random forest with network
 
 #usage:

@@ -14,7 +14,7 @@
 #
 #====#
 
-DIR = "" # set to github repo distory
+DIR = "~/projects/dssg/match-edu/" # set to github repo distory
 
 # We ASSUME the following variables exist:
 # "students"
@@ -31,6 +31,9 @@ compare.stud = sub.stud[compare_ixs,]
 
 # Use monotone regression to 
 # map PSAT to col_sat
+# need to first bin and compute mean for bin
+# because "monoreg" package assumes each point
+# has a unique "x"-value
 psat_range = 60:240;
 bin_n = rep(0,length(psat_range))
 bin_mean = rep(0, length(psat_range))
@@ -76,7 +79,9 @@ for (i in 2:length(xtiles)){
 
 filename='/viz/target_plot.jpg'
 jpeg(file=paste0(DIR, filename), height=700, width=700)
-plot(compare.stud$psat, compare.stud$col_sat, main="target score", xlab="composite psat", ylab="college sat", col=rgb(0.1,0.8,1,0.05), pch=20)
+plot(compare.stud$psat, compare.stud$col_sat, 
+	main="target score", xlab="composite psat", 
+	ylab="college sat", col=rgb(0.1,0.8,1,0.05), pch=20)
 lines(psat_range, target, lwd=3, col='red');
 legend(190,900, c("target"), col=c('red'), lty=c(1))
 dev.off()
