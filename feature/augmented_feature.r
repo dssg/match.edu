@@ -18,18 +18,26 @@ stepwise_p = function(v, i = 1, w = 1, suppress = FALSE, alpha = 0.05) {
 	if(length(i) == 1) { i = seq(1:dim(data)[1]) }
 	flag = TRUE
 	while(flag) {
-		f = as.formula(paste(paste("col_sat_final[i] ~ col_demo_test[i] + ", paste(v, collapse = "[i] + "), collapse = " "), "[i]", sep = ""))
+		f = as.formula(paste(
+			paste("col_sat_final[i] ~ col_demo_test[i] + ", 
+			paste(v, collapse = "[i] + "), collapse = " "), 
+			"[i]", sep = ""))
+
 		model = summary(lm(f, data = data, weights = w[i]))
 		pvalues = model$coef[3:(length(v) + 2),4]
 		index = which(pvalues == max(pvalues))
 		if(pvalues[index] < alpha) { flag = FALSE }
 		if(pvalues[index] >= alpha) {
-			if(!suppress) { print(paste("This variable is being eliminated: ", v[index], " (p-value: ", round(pvalues[index], 4), ")", sep = ""), quote = FALSE) }
+			if(!suppress) { 
+				print(paste("This variable is being eliminated: ", 
+					v[index], " (p-value: ", 
+					round(pvalues[index], 4), ")", sep = ""), 
+				    quote = FALSE) }
 			v = v[-index]
-			}
 		}
+	}
 	if(!suppress) { print(model) }
-	return(model)
+		return(model)
 	}
 	
 # This code does step-down regression based on adjusted R^2
@@ -52,11 +60,11 @@ stepwise_r = function(v, i = 1, w = 1, suppress = FALSE, cutoff = 0) {
 			index = which(counter == min(counter))
 			if(!suppress) { print(paste("This variable is being eliminated: ", v[index], " (Adj R^2: ", round(adjr, 4), ")", sep = ""), quote = FALSE) }
 			v = v[-index]
-			}
 		}
+	}
 	if(!suppress) { print(model) }
 	return(model)
-	}
+}
 
 # This code does step-down regression based on the Kendall-Tau coefficient
 # The cutoff indicates whether we should eliminate a variable as long as the KTC drop is lower than this cutoff
@@ -66,8 +74,12 @@ stepwise_kendall = function(v, i = 1, w = 1, suppress = FALSE, cutoff = 0.005) {
 	flag = TRUE
 	while(flag) {
 		data2 = cbind(data, w)
-		temp_df = na.omit(data2[i, names(data2) %in% c(v, "col_nodemo_test", "col_sat_final", "col_demo_test", "w")])
-		f = as.formula(paste(paste("col_sat_final ~ col_demo_test + ", paste(v, collapse = " + "), collapse = " "), sep = ""))
+		temp_df = na.omit(data2[i, names(data2) %in% 
+			c(v, "col_nodemo_test", "col_sat_final", 
+			  "col_demo_test", "w")])
+		f = as.formula(paste(paste("col_sat_final ~ col_demo_test + ", 
+			paste(v, collapse = " + "), collapse = " "), 
+			sep = ""))
 		model = lm(f, data = temp_df, weights = w)
 		ktc = cor(temp_df$col_nodemo_test - temp_df$col_sat_final, temp_df$col_nodemo_test - model$fitted.values, method = "kendall")
 		counter = rep(NA, length(v))

@@ -58,11 +58,12 @@ students = merge(students, target.df, by.x="psat",
 ####
 # Visualization, sanity check
 #
-#
 # Visualizing the target group fit
 # compare also with quantile means
+#
 bins = c(0,0.025,seq(0.05,0.95,length=20),0.975,1);
 xtiles = quantile(sub.stud$psat, probs=bins, na.rm=TRUE)
+
 
 aves=rep(1,length(xtiles)-1)
 
