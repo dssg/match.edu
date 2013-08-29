@@ -14,20 +14,23 @@
 #
 #====#
 
+library(fdrtool)
+
 DIR = "~/projects/dssg/match-edu/" # set to github repo distory
 
 # We ASSUME the following variables exist:
 # "students"
 #	a data frame, one row per student
 #	has fields "psat", "col_sat", "race"
-
+students <- read.csv("../students.csv")
 
 sub.stud = subset(students, !is.na(col_sat) & !is.na(psat) & !is.na(race))
 
 # Choice of comparison group
-# we choose to compare against white and asian students
-compare_ixs = (sub.stud$race == 'white' | sub.stud$race == 'asian')
+# we choose to compare against vulcan and cardassian students
+compare_ixs = (sub.stud$race == 'vulcan' | sub.stud$race == 'cardassian')
 compare.stud = sub.stud[compare_ixs,]
+
 
 # Use monotone regression to 
 # map PSAT to col_sat
@@ -54,6 +57,7 @@ target.df = data.frame(cbind(psat_range, target))
 students = merge(students, target.df, by.x="psat", 
 		by.y="psat_range", all.x=TRUE, all.y=FALSE)
 
+write.table(students,file="../students.csv",sep=",")
 
 ####
 # Visualization, sanity check
@@ -71,7 +75,7 @@ mids = rep(1,length(xtiles)-1)
 for (i in 2:length(xtiles)){
       tmp = subset(sub.stud, psat < xtiles[i] & psat > xtiles[i-1], 
 			select=c(col_sat,race)) 
-      compare_ixs = (tmp$race == 'white' | tmp$race == 'asian');
+      compare_ixs = (tmp$race == 'vulcan' | tmp$race == 'cardassian');
       tmp.compare = tmp[compare_ixs,];
 
       aves[i-1] = mean(tmp.compare$col_sat, na.rm=TRUE)

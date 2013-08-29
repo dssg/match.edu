@@ -30,10 +30,10 @@ all_races = ["klingon","romulan","vulcan","cardassian"]
 
 def collegeChoose(psat, gpa):
 	def admitStud(stud):
-		psat_l = psat-random.randint(0,80)
+		psat_l = psat-random.randint(0,120)
 		psat_u = psat+random.randint(0,80)
 
-		gpa_l = gpa-random.random()*1.5
+		gpa_l = gpa-random.random()*2.5
 		gpa_u = gpa+random.random()*1.5
 
 		return (stud["psat"]>psat_l and stud["psat"]<psat_u and \
@@ -60,7 +60,7 @@ all_cols_fn = {"Cranberry Lemon University":collegeChoose(240,4.0),
 var_ls = ["name","sid","race","college","psat","gpa","honors"]
 var_ls.extend(["var"+str(x) for x in range(10)])
 
-n_stud = 1000
+n_stud = 4000
 stud_df = pd.DataFrame(index=range(n_stud), columns=var_ls) 
 
 for i in range(n_stud):
@@ -70,7 +70,7 @@ for i in range(n_stud):
 	stud_df.race[i] = random.sample(all_races, 1)[0]
 	stud_df.gpa[i] = random.random()*3+1
 	stud_df.psat[i] = max(min(np.floor(stud_df.gpa[i]*60 + \
-				(0.5-random.random())*120),
+				(0.5-random.random())*100),
 				240), 60)
 	stud_df.honors[i] = random.randint(0,10)
 	
