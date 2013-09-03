@@ -1,7 +1,7 @@
 # Under-match Prediction: Equal Access to Quality College
 This is a [Data Science for Social Good](www.dssg.io) project to identify high school students who are likely to **undermatch**, that is, students who have high academic potential but poor college outcome.
 
-This repository contains some of the models we used. 
+The data as well as most of the analysis code are not public. This repository contains a sample of some of the models we used. 
 
 ## The problems
 Under-match has two facets. 
@@ -36,5 +36,8 @@ NDA prevents us from sharing the data as well as the scripts with which we wrote
 
 ### Modeling
 
+We treat both the problem of ... as prediction problems. We build a response variable that represents a student's college outcome in historical data and then either classify or regress from the student's academic, socio-economic, and demographic information. We build a feature vector for each student and train a linear model with L1 regularization as well as Random Forest to output the prediction.
 
 ## Data
+
+
