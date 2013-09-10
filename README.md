@@ -32,7 +32,7 @@ The data consist of anonymized records of students from Mesa, Arizona. There are
 * Attendance records, which tell us how many excused and unexcused absences a student accrued in each of 4 years of high school.
 * Test records, which give the state standardized test scores as well as some national ones such as the PSAT, SAT, ACT, AP, etc. 
 
-We also use the National Student Clearinghouse (NSC) data to get the college outcome of the students. The NSC data reports which college a student attended for each semester or quarter that a student remained in college.
+We also use the National Student Clearinghouse (NSC) data to get the college outcome of the students. The NSC data reports which college a student attended and certain various college enrollment information for each semester or quarter that a student remained in college.
 
  Mesa Public School has joined the NSC data with the Mesa student records.
 
@@ -49,7 +49,11 @@ NDA prevents us from sharing the data as well as the scripts with which we wrote
 
 ### Modeling
 
-We treat the problem of identifying high-risk students as a prediction problem. We build a response variable that represents a student's college outcome in historical data and then either classify or regress from the student's academic, socio-economic, and demographic information. We build a feature vector for each student and train a linear model with L1 regularization as well as Random Forest to output the prediction.
+We treat the problem of identifying high-risk students as a prediction problem. We build a response variable that represents a student's college outcome in historical data and then either classify or regress from the student's academic, socio-economic, and demographic information. We build a feature vector for each student and train a linear model with L1 regularization as well as Random Forest to output the prediction. We also tried custom modifications to out-of-the-box algorithms.
+
+We construct two response variables for each student. The first response is the quality of the college that a student attended, as measured by the average PSAT scores of the students of that college; this is a continuous response. The second response is whether the student attended a four year institution and whether the student had graduated or were on track for graduation; this is a discrete response.
+
+
 
 
 
