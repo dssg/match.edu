@@ -32,6 +32,10 @@ The data consist of anonymized records of students from Mesa, Arizona. There are
 * Attendance records, which tell us how many excused and unexcused absences a student accrued in each of 4 years of high school.
 * Test records, which give the state standardized test scores as well as some national ones such as the PSAT, SAT, ACT, AP, etc. 
 
+We also use the National Student Clearinghouse (NSC) data to get the college outcome of the students. The NSC data reports which college a student attended for each semester or quarter that a student remained in college.
+
+ Mesa Public School has joined the NSC data with the Mesa student records.
+
 ## The project
 
 ### Data Processing
