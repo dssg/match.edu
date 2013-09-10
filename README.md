@@ -22,6 +22,16 @@ We are working with the Mesa Public School District, the largest public school d
 
 ![Mesa Public School District](http://dssg.io/img/partners/mesa.png)
 
+## Data
+
+Here we describe just the data from the Mesa Public School district.
+The data consist of anonymized records of students from Mesa, Arizona. There are four major categories of records that we use:
+
+* Courses and grades records, which show the classes taken by a student as well as the grades received
+* General information, which gives the student's gender and ethnicity. It also tells us which high school the student attended and the census tract in which the student resided. 
+* Attendance records, which tell us how many excused and unexcused absences a student accrued in each of 4 years of high school.
+* Test records, which give the state standardized test scores as well as some national ones such as the PSAT, SAT, ACT, AP, etc. 
+
 ## The project
 
 ### Data Processing
@@ -38,7 +48,5 @@ NDA prevents us from sharing the data as well as the scripts with which we wrote
 We treat the problem of identifying high-risk students as a prediction problem. We build a response variable that represents a student's college outcome in historical data and then either classify or regress from the student's academic, socio-economic, and demographic information. We build a feature vector for each student and train a linear model with L1 regularization as well as Random Forest to output the prediction.
 
 
-
-## Data
 
 
