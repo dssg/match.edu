@@ -29,7 +29,7 @@ We are working with the Mesa Public School District, the largest public school d
 NDA prevents us from sharing the data as well as the scripts with which we wrote to clean the data. Without going into details, the key data processing challenges we faced are:
 
 * Transfer students. Students who transfer high schools create lots of anomalies in the data.
-* Missing records. Some students have no college records; we often cannot distinguish them from students who did not attend college.
+* Missing records. Some students have no college records, that is, no records in the NSC data; we often cannot distinguish them from students who did not attend college.
 * ACS data. We geocode high schools and approximately geocode students to associate them with the census tract id. We then match against the ACS data.
 * Spelling mistakes. High schools and colleges often do not have a standard identification code. We have to use the names, which are often misspelled in the data.
 
