@@ -35,7 +35,9 @@ NDA prevents us from sharing the data as well as the scripts with which we wrote
 
 ### Modeling
 
-We treat both the problem of ... as prediction problems. We build a response variable that represents a student's college outcome in historical data and then either classify or regress from the student's academic, socio-economic, and demographic information. We build a feature vector for each student and train a linear model with L1 regularization as well as Random Forest to output the prediction.
+We treat the problem of identifying high-risk students as a prediction problem. We build a response variable that represents a student's college outcome in historical data and then either classify or regress from the student's academic, socio-economic, and demographic information. We build a feature vector for each student and train a linear model with L1 regularization as well as Random Forest to output the prediction.
+
+
 
 ## Data
 
