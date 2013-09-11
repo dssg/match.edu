@@ -12,8 +12,8 @@ This is however not true. Many factors, socio-economic and demographic, all affe
 Some students will attend a less selective college because it is more affordable, but many underprivileged students make decisions that are both academically and financially sub-optimal. For example, many students in the Mesa Public School district attend community colleges instead of 4 year institutions like ASU. ASU can be cheaper because of financial aid and because of the fact that the graduation rate in ASU is much higher than that of a community college; ASU provides much more value for the money spent.
 
 We tackle two concrete instances of under-match:
-* students with good academic records who attend less selective colleges
-* students who are likely to graduate from four year colleges but attend community colleges
+* students who attend less selective colleges because of non-academic factors
+* students who attend community college despite the fact that if they were to attend a four year college, they would be much more likely to graduate. 
 
 ## The solution: prediction and targeting
 Our goal is to identify students at risk for under-match, based on their academic, demographic, socio-economic information. We use data on past high school graduates to model the students' college outcome. We can then apply the model on current high school students to predict their risk of under-matching and find the high-risk students whom the high school can provide extra counseling. 
@@ -51,9 +51,25 @@ NDA prevents us from sharing the data as well as the scripts with which we wrote
 
 We treat the problem of identifying high-risk students as a prediction problem. We build a response variable that represents a student's college outcome in historical data and then either classify or regress from the student's academic, socio-economic, and demographic information. We build a feature vector for each student and train a linear model with L1 regularization as well as Random Forest to output the prediction. We also tried custom modifications to out-of-the-box algorithms.
 
-We construct two response variables for each student. The first response is the quality of the college that a student attended, as measured by the average PSAT scores of the students of that college; this is a continuous response. The second response is whether the student attended a four year institution and whether the student had graduated or were on track for graduation; this is a discrete response.
+**College quality under-match.** It is a complex process to construct a response variable that represents how much better of a college a student should attend. We break down the construction into three steps: 
+* First, we measure the quality of a college by the average PSAT score of the students in that college. 
+* Second, we learn a model that outputs the college quality based **only on the academic profile** of the students. The output of this model represents the **target**. 
+* Third, we construct the under-match variable as the difference of the target college-quality and the actual college-quality of a student. 
+
+**College graduation under-match.** We use 2 binary response variables here: whether the student attended a four year college and whether a student graduated. From these response variables, we can estimate the probability $p( grad \,|\, 4year )$ as well as $p( 4year )$.   
 
 
+## Simulation
 
+We provide a basic simulation that demonstrates how we predict the college quality of a student as well as the evaluation metrics we use. We **do not** include code that models a student's graduation probabilities. 
 
+```
+python simulate/simulateStudents.py
+R CMD BATCH simulate/computeColSAT.R
+R CMD BATCH model/buildTarget.R
+R CMD BATCH model/evaluate_models.R
+R CMD BATCH viz/bargraph-plots.r
+```
+
+The above commands will simulate the data, construct the response, learn the model, evaluate errors, and produce visualization representing the errors in the `viz` directory.
 
