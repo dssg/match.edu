@@ -1,3 +1,6 @@
+### Compute the average PSAT score of each of the colleges
+###
+
 studs <- read.csv("../students.csv")
 col_sats <- aggregate(studs$psat, by=list(studs$college), FUN=mean)
 

@@ -56,7 +56,7 @@ We treat the problem of identifying high-risk students as a prediction problem. 
 * Second, we learn a model that outputs the college quality based **only on the academic profile** of the students. The output of this model represents the **target**. 
 * Third, we construct the under-match variable as the difference of the target college-quality and the actual college-quality of a student. 
 
-**College graduation under-match.** We use 2 binary response variables here: whether the student attended a four year college and whether a student graduated. From these response variables, we can estimate the probability $p( grad \,|\, 4year )$ as well as $p( 4year )$.   
+**College graduation under-match.** We use 2 binary response variables here: whether the student attended a four year college and whether a student graduated. From these response variables, we can estimate the probability p( grad | 4year ) as well as p( 4year ).   
 
 
 ## Simulation
@@ -73,3 +73,6 @@ R CMD BATCH viz/bargraph-plots.r
 
 The above commands will simulate the data, construct the response, learn the model, evaluate errors, and produce visualization representing the errors in the `viz` directory.
 
+The repository is organized into three directories: `simulate`, `model`, `viz`, containing code responsible for generating simulation data, building models, creating visualizations respectively.
+
+The repository also contains a directory `feature` which contains a sample of the code for feature construction. The code there cannot be ran however and plays no role in the simulation.
