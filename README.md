@@ -45,7 +45,7 @@ The repository is organized into three directories: `simulate`, `model`, `viz`, 
 
 The repository also contains a directory `feature` which contains a sample of the code for feature construction. The code there cannot be ran however and plays no role in the simulation.
 
-# Simulating data
+### Simulating data
 **NOTE: Due to the sensitive nature of student-level data, we're unable to share it with the public.** 
 
 We have, however, written scripts in the `simulate` director to simulated data you can use to run our models.
