@@ -48,12 +48,12 @@ The repository also contains a directory `feature` which contains a sample of th
 ### Simulating data
 **NOTE: Due to the sensitive nature of student-level data, we're unable to share it with the public.** 
 
-We have, however, written scripts in the `simulate` director to simulated data you can use to run our models.
+We have, however, written scripts in the `simulate` directory to simulate data you can use to train our models.
 
 ### Data Processing
 **NOTE: We're also unable to share the scripts that clean the private student-level data we received from Mesa.** 
 
-For the sake of transparency, here are the key data processing challenges we faced:
+For the sake of transparency, thought, here's a run-down of the key data processing challenges we faced:
 
 * Transfer students. Students who transfer high schools create lots of anomalies in the data.
 * Missing records. Some students have no college records, that is, no records in the NSC data. We often can't distinguish them from students who did not attend college.
@@ -61,11 +61,11 @@ For the sake of transparency, here are the key data processing challenges we fac
 * Spelling mistakes. High schools and colleges often do not have a standard identification code. We have to use the school names, which are often misspelled in the data.
 
 ### Modeling
-**NOTE: The `model` directory includes models for college quality under-match, but we cannot include our models for college graduation under-match at this time.**
+**NOTE**: The `model` directory includes models for college quality under-match, but we **cannot include our models for college graduation under-match** at this time.
 
 We treat the problem of identifying high-risk students as a prediction problem. 
 
-**Constructing response variables**
+####Constructing response variables
 We build a response variable that represents a student's college outcome in historical data and then either classify or regress from the student's academic, socio-economic, and demographic information.
 
 *College quality under-match.* Constructing a response variable that represents how much better of a college a student should attend is difficult. We broke this process down into three steps: 
@@ -75,7 +75,7 @@ We build a response variable that represents a student's college outcome in hist
 
 *College graduation under-match.* We use 2 binary response variables here: whether the student attended a four year college and whether a student graduated. From these response variables, we can estimate the probability that a student attended a four year college, and the probability that they graduated given that they attended a 4 year college - p( 4-year ) and p( grad | 4-year ).   
 
-**Models**
+####Models
  We build a feature vector for each student and train the following models:
 
 - a linear model with L1 regularization 
@@ -83,7 +83,7 @@ We build a response variable that represents a student's college outcome in hist
 - out-of-the-box algorithms with custom modifications
 
 ### Using our code
-Starting with simulated data, you can train our models to predict the **college quality** of a student - again, not the probability of graduating - and evaluate each model using our evaluation metrics.
+Starting with simulated data, you can train our models to predict the **college quality** of a student - again, not the **college graduation** - and evaluate each model using our evaluation metrics.
 
 To do so, run the following commands:
 
