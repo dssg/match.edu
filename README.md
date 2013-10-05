@@ -1,67 +1,91 @@
-# Under-match Prediction: Equal Access to Quality College
-This is a [Data Science for Social Good](www.dssg.io) project to identify high school students who are likely to **undermatch**, that is, students who have high academic potential but poor college outcome.
+# Under-matching prediction: Equal Access to Quality College
+[![Mesa Public School District](http://dssg.io/img/partners/mesa.png)](www.mpsaz.org)
 
-This public repository contains **a few** of the models and error metrics we used, as well as simulated data with which one can run our code. This repository contains no working data processing procedures because the actual student data are private. 
+Predictive models to identify high-achieving high school students who are likely to undermatch - attend 2-year rather than 4-year colleges, or not go to college at all.
 
-## The problems
+This is a 2013 [Data Science for Social Good](www.dssg.io) project in partnership with the [Mesa Public Schools](www.mpsaz.org).
 
-Ideally, a student's college outcome--whether a student goes to college and the quality of a student's college--depends only on the student's academic record. 
+## The problem: college undermatching
 
-This is however not true. Many factors, socio-economic and demographic, all affect student's college outcome. [Previous studies](http://www.brookings.edu/~/media/projects/bpea/spring%202013/2013a_hoxby.pdf) have shown that high-achieving students from low-income families tend to apply to less selective colleges. 
+A student's college outcome - whether a student goes to college, and the quality of that college - should depend only on their academic record. 
 
-Some students will attend a less selective college because it is more affordable, but many underprivileged students make decisions that are both academically and financially sub-optimal. For example, many students in the Mesa Public School district attend community colleges instead of 4 year institutions like ASU. ASU can be cheaper because of financial aid and because of the fact that the graduation rate in ASU is much higher than that of a community college; ASU provides much more value for the money spent.
+This is far from being a reality. Unfortunately, many socio-economic and demographic factors affect students' college outcome. [Previous studies](http://www.brookings.edu/~/media/projects/bpea/spring%202013/2013a_hoxby.pdf) have shown that high-achieving students from low-income families tend to apply to less selective colleges. 
 
-We tackle two concrete instances of under-match:
+Some students attend less selective colleges because they are more affordable, but many underprivileged students choose colleges that are both academically and financially sub-optimal. 
+
+For example, many students in the Mesa Public School district - a large district in suburban Phoenix, Arizona - attend community colleges instead of 4 year institutions like Arizona State University (ASU). However, ASU can not only be cheaper because of financial aid, but it has a better bang for your buck because its graduation rate is much higher than that of most community colleges.
+
+We're tackling two concrete instances of college under-matching:
 * students who attend less selective colleges because of non-academic factors
 * students who attend community college despite the fact that if they were to attend a four year college, they would be much more likely to graduate. 
 
 ## The solution: prediction and targeting
-Our goal is to identify students at risk for under-match, based on their academic, demographic, socio-economic information. We use data on past high school graduates to model the students' college outcome. We can then apply the model on current high school students to predict their risk of under-matching and find the high-risk students whom the high school can provide extra counseling. 
+Our goal is to identify students at risk for college undermatching, based on their academic, demographic, socio-economic information. We use data on past high school graduates to model their college outcomes. We can then apply this predictive model on current high school students to predict their risk of under-matching, thus identifying high-risk students high schools should target with extra college counseling. 
 
-We are working with the Mesa Public School District, the largest public school district in Arizona, to design and evaluate our predictive models. We are also using data from a national nonprofit organization and other school districts in the United States. For some demographic features, we download data from the 5-year American Communities Survey (ACS), freely available for public use. 
-
-![Mesa Public School District](http://dssg.io/img/partners/mesa.png)
+We are working with the Mesa Public School District, the largest public school district in Arizona, to design and evaluate our predictive models.  
 
 ## Data
+Here we describe the data we received from the Mesa Public School district. (We are also using data from a national nonprofit organization and other school districts in the United States.)
 
-Here we describe just the data from the Mesa Public School district.
-The data consist of anonymized records of students from Mesa, Arizona. There are four major categories of records that we use:
+Mesa's data consist of anonymized records of students from Mesa, Arizona. There are four major categories of records that we use:
 
-* Courses and grades records, which show the classes taken by a student as well as the grades received
-* General information, which gives the student's gender and ethnicity. It also tells us which high school the student attended and the census tract in which the student resided. 
-* Attendance records, which tell us how many excused and unexcused absences a student accrued in each of 4 years of high school.
-* Test records, which give the state standardized test scores as well as some national ones such as the PSAT, SAT, ACT, AP, etc. 
+* Courses and grades records, which show the classes taken by a student as well as the grades they received.
+* Student background information, which gives us the student's gender and ethnicity. It also tells us which high school the student attended and the census tract they reside in. 
+* For additional demographic data about the student's census tract, we downloaded data from the Census Bureau's 5-year American Community Survey (ACS).
+* Attendance records, which tell us how many excused and unexcused absences a student accrued in each years of high school.
+* Test records, which give us the student's state standardized test scores, as well as some national ones - the PSAT, SAT, ACT, AP, and so on.
 
-We also use the National Student Clearinghouse (NSC) data to get the college outcome of the students. The NSC data reports which college a student attended and certain various college enrollment information for each semester or quarter that a student remained in college.
+So that gives us plenty of data on historical students and how they did in high school. But that's not enough for our predictive model, we also need outcomes - in order to predict college outcomes for future students, we need to know where past students ended up.
 
- Mesa Public School has joined the NSC data with the Mesa student records.
+So we also gathered college outcome data from the National Student Clearinghouse (NSC) for the students. The NSC data reports which college a student attended and college enrollment information for each semester or quarter a student remained in college. Mesa Public Schools joined the NSC data with the Mesa student records for us.
 
-## The project
+## Project layout
+
+The repository is organized into three directories: `simulate`, `model`, `viz`, containing code responsible for generating simulation data, building models, creating visualizations respectively.
+
+The repository also contains a directory `feature` which contains a sample of the code for feature construction. The code there cannot be ran however and plays no role in the simulation.
+
+# Simulating data
+**NOTE: Due to the sensitive nature of student-level data, we're unable to share it with the public.** 
+
+We have, however, written scripts in the `simulate` director to simulated data you can use to run our models.
 
 ### Data Processing
-NDA prevents us from sharing the data as well as the scripts with which we wrote to clean the data. Without going into details, the key data processing challenges we faced are:
+**NOTE: We're also unable to share the scripts that clean the private student-level data we received from Mesa.** 
+
+For the sake of transparency, here are the key data processing challenges we faced:
 
 * Transfer students. Students who transfer high schools create lots of anomalies in the data.
-* Missing records. Some students have no college records, that is, no records in the NSC data; we often cannot distinguish them from students who did not attend college.
-* ACS data. We geocode high schools and approximately geocode students to associate them with the census tract id. We then match against the ACS data.
-* Spelling mistakes. High schools and colleges often do not have a standard identification code. We have to use the names, which are often misspelled in the data.
-
+* Missing records. Some students have no college records, that is, no records in the NSC data. We often can't distinguish them from students who did not attend college.
+* ACS data. We geocode high schools and approximately geocode students to associate them with the census tract id. We then match against the tract-level ACS data.
+* Spelling mistakes. High schools and colleges often do not have a standard identification code. We have to use the school names, which are often misspelled in the data.
 
 ### Modeling
+**NOTE: The `model` directory includes models for college quality under-match, but we cannot include our models for college graduation under-match at this time.**
 
-We treat the problem of identifying high-risk students as a prediction problem. We build a response variable that represents a student's college outcome in historical data and then either classify or regress from the student's academic, socio-economic, and demographic information. We build a feature vector for each student and train a linear model with L1 regularization as well as Random Forest to output the prediction. We also tried custom modifications to out-of-the-box algorithms.
+We treat the problem of identifying high-risk students as a prediction problem. 
 
-**College quality under-match.** It is a complex process to construct a response variable that represents how much better of a college a student should attend. We break down the construction into three steps: 
+**Constructing response variables**
+We build a response variable that represents a student's college outcome in historical data and then either classify or regress from the student's academic, socio-economic, and demographic information.
+
+*College quality under-match.* Constructing a response variable that represents how much better of a college a student should attend is difficult. We broke this process down into three steps: 
 * First, we measure the quality of a college by the average PSAT score of the students in that college. 
 * Second, we learn a model that outputs the college quality based **only on the academic profile** of the students. The output of this model represents the **target**. 
 * Third, we construct the under-match variable as the difference of the target college-quality and the actual college-quality of a student. 
 
-**College graduation under-match.** We use 2 binary response variables here: whether the student attended a four year college and whether a student graduated. From these response variables, we can estimate the probability p( grad | 4year ) as well as p( 4year ).   
+*College graduation under-match.* We use 2 binary response variables here: whether the student attended a four year college and whether a student graduated. From these response variables, we can estimate the probability that a student attended a four year college, and the probability that they graduated given that they attended a 4 year college - p( 4-year ) and p( grad | 4-year ).   
 
+**Models**
+ We build a feature vector for each student and train the following models:
 
-## Simulation
+- a linear model with L1 regularization 
+- a random forest 
+- out-of-the-box algorithms with custom modifications
 
-We provide a basic simulation that demonstrates how we predict the college quality of a student as well as the evaluation metrics we use. We **do not** include code that models a student's graduation probabilities. 
+### Using our code
+Starting with simulated data, you can train our models to predict the **college quality** of a student - again, not the probability of graduating - and evaluate each model using our evaluation metrics.
+
+To do so, run the following commands:
 
 ```
 python simulate/simulateStudents.py
@@ -71,8 +95,4 @@ R CMD BATCH model/evaluate_models.R
 R CMD BATCH viz/bargraph-plots.r
 ```
 
-The above commands will simulate the data, construct the response, learn the model, evaluate errors, and produce visualization representing the errors in the `viz` directory.
-
-The repository is organized into three directories: `simulate`, `model`, `viz`, containing code responsible for generating simulation data, building models, creating visualizations respectively.
-
-The repository also contains a directory `feature` which contains a sample of the code for feature construction. The code there cannot be ran however and plays no role in the simulation.
+These scripts will simulate the data, construct the response, learn the model, evaluate errors, and produce visualization representing the errors in the `viz` directory.
