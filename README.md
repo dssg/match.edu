@@ -1,5 +1,5 @@
-# Under-matching prediction: Equal Access to Quality College
-[![Mesa Public School District](http://dssg.io/img/partners/mesa.png)](http://www.mpsaz.org)
+# Undermatching prediction: getting kids into college
+<a href="http://www.mpsaz.org)"><img src="http://dssg.io/img/partners/mesa.png" width="300" align="right"></a>
 
 Predictive models to identify high-achieving high school students who are likely to undermatch - attend 2-year rather than 4-year colleges, or not go to college at all.
 
