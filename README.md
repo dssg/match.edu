@@ -18,11 +18,15 @@ For example, many students in the Mesa Public School district - a large district
 We're tackling two concrete instances of college under-matching:
 * students who attend less selective colleges because of non-academic factors
 * students who attend community college despite the fact that if they were to attend a four year college, they would be much more likely to graduate. 
+ 
+**[Read more about the undermatching problem in the wiki](../../wiki/Problem)**
 
 ## The solution: prediction and targeting
 Our goal is to identify students at risk for college undermatching, based on their academic, demographic, socio-economic information. We use data on past high school graduates to model their college outcomes. We can then apply this predictive model on current high school students to predict their risk of under-matching, thus identifying high-risk students high schools should target with extra college counseling. 
 
 We are working with the Mesa Public School District, the largest public school district in Arizona, to design and evaluate our predictive models.  
+
+**[Read more about our methodology in the wiki](../../wiki/Methodology)**
 
 ## Data
 Here we describe the data we received from the Mesa Public School district. (We are also using data from a national nonprofit organization and other school districts in the United States.)
@@ -38,6 +42,8 @@ Mesa's data consist of anonymized records of students from Mesa, Arizona. There 
 So that gives us plenty of data on historical students and how they did in high school. But that's not enough for our predictive model, we also need outcomes - in order to predict college outcomes for future students, we need to know where past students ended up.
 
 So we also gathered college outcome data from the National Student Clearinghouse (NSC) for the students. The NSC data reports which college a student attended and college enrollment information for each semester or quarter a student remained in college. Mesa Public Schools joined the NSC data with the Mesa student records for us.
+
+**[Read more about the data we used in the wiki](../../wiki/Data)**
 
 ## Project layout
 
